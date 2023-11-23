@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ebebeb;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        div {
+            padding: 15px;
+            border: 1px solid #333;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: #2a2a2a;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1DA1F2;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, #333, #1DA1F2, #333);
+            margin: 20px 0;
+        }
+        .post-container {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .post-wrapper {
+            width: 600px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .post-content {
+            flex: 1;
+        }
+
+        .post-author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .post-text {
+            background-color: #F7F9FA;
+            color: black;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #FFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+            display: inline-block;
+
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="submit"]:active {
+            background-color: #004392;
+        }
+    </style>
+</head>
+<body>
+<div class="post-wrapper">
+
+    <div th:each="post:${posts}" class="post-container">
+        <div class="profile-icon"></div>
+        <div class="post-content">
+            <div class="post-author" th:text="${post.getAuthor()}"></div>
+            <div class="post-author" th:text="${post.getTitle()}"></div>
+            <div class="post-text" th:text="${post.getDescription()}"></div>
+            <form th:method="GET" th:action="@{/post/edit/{id}(id=${post.getId()})}" style="display: inline;">
+                <input type="submit" value="Edit!"/>
+            </form>
+            <form th:method="DELETE" th:action="@{/post/{id}(id=${post.getId()})}" style="display: inline;">
+                <input type="submit" value="Delete!"/>
+            </form>
+
+        </div>
+    </div>
+
+    <hr/>
+    <a th:href="@{/post/new}">Add new post</a>
+
+</div>
+
+</body>
+</html>

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/post")
 public class PostController {
-
+//adss
     private final PostService postService;
 
     @Autowired

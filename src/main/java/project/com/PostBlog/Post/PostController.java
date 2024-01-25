@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 //adss
     private final PostService postService;
-//as
+//a
     @Autowired
     public PostController(PostService postService) {
         this.postService = postService;
